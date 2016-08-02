@@ -1,0 +1,371 @@
+<html>
+<head>
+<title>OtherActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(98,151,85); font-style: italic; }
+.s3 { color: rgb(106,135,89); }
+.s4 { color: rgb(128,128,128); }
+.s5 { color: rgb(104,151,187); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+OtherActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">org.turntotech.samplejson</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">android.app.Activity</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.graphics.Color</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.provider.Settings</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.support.v4.view.GestureDetectorCompat</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.util.*</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.view.GestureDetector</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.view.MotionEvent</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.AdapterView</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.LinearLayout</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.apache.http.HttpResponse</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.apache.http.client.methods.HttpGet</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.apache.http.impl.client.DefaultHttpClient</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.apache.http.params.BasicHttpParams</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.apache.http.util.EntityUtils</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.app.Activity</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.content.Intent</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.graphics.Color</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.os.AsyncTask</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.util.Log</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.ArrayAdapter</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.EditText</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.LinearLayout</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.ListView</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.Spinner</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.TextView</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s2">/** 
+ * Created by kaiso on 7/10/2016. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">OtherActivity </span><span class="s0">extends </span><span class="s1">Activity </span><span class="s0">implements </span><span class="s1">GestureDetector.OnGestureListener</span><span class="s0">, </span><span class="s1">GestureDetector.OnDoubleTapListener { 
+    </span><span class="s0">private </span><span class="s1">Spinner spinner2</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String json_urld = </span><span class="s3">&quot;http://192.168.240.1/arduino/digital/13/1&quot;</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String json_urld2 = </span><span class="s3">&quot;http://192.168.240.1/arduino/digital/13/0&quot;</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String json_urld3 = </span><span class="s3">&quot;http://192.168.240.1/arduino/digital/12/1&quot;</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String json_urld4 = </span><span class="s3">&quot;http://192.168.240.1/arduino/digital/12/0&quot;</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String json_urld5 = </span><span class="s3">&quot;http://192.168.240.1/arduino/digital/11/1&quot;</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String json_urld6 = </span><span class="s3">&quot;http://192.168.240.1/arduino/digital/11/0&quot;</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String json_urld7 = </span><span class="s3">&quot;http://192.168.240.1/arduino/digital/10/1&quot;</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String json_urld8 = </span><span class="s3">&quot;http://192.168.240.1/arduino/digital/10/0&quot;</span><span class="s0">;</span><span class="s1"> 
+    String s2 = </span><span class="s3">&quot;192.168.240.1&quot;</span><span class="s0">;</span><span class="s1"> 
+    String pin</span><span class="s0">;</span><span class="s1"> 
+    TextView pinWord</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">GestureDetectorCompat mDetector</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s4">//String str;</span><span class="s1"> 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span><span class="s1"> 
+        setContentView(R.layout.otherlayout)</span><span class="s0">;</span><span class="s1"> 
+        spinner2 = (Spinner) findViewById(R.id.spinner2)</span><span class="s0">;</span><span class="s1"> 
+        mDetector = </span><span class="s0">new </span><span class="s1">GestureDetectorCompat(</span><span class="s0">this,this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s4">// Set the gesture detector as the double tap</span><span class="s1"> 
+        </span><span class="s4">// listener.</span><span class="s1"> 
+        mDetector.setOnDoubleTapListener(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        List&lt;String&gt; list = </span><span class="s0">new </span><span class="s1">ArrayList&lt;String&gt;()</span><span class="s0">;</span><span class="s1"> 
+        list.add(</span><span class="s3">&quot;DigitOut13&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        list.add(</span><span class="s3">&quot;DigitOut12&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        list.add(</span><span class="s3">&quot;DigitOut11&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        list.add(</span><span class="s3">&quot;DigitOut10&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        list.add(</span><span class="s3">&quot;DigitOut9&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        list.add(</span><span class="s3">&quot;DigitOut8&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        ArrayAdapter&lt;String&gt; dataAdapter = </span><span class="s0">new </span><span class="s1">ArrayAdapter&lt;String&gt;(</span><span class="s0">this,</span><span class="s1"> 
+                android.R.layout.simple_spinner_item</span><span class="s0">, </span><span class="s1">list)</span><span class="s0">;</span><span class="s1"> 
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)</span><span class="s0">;</span><span class="s1"> 
+        spinner2.setAdapter(dataAdapter)</span><span class="s0">;</span><span class="s1"> 
+        spinner2.setOnItemSelectedListener(</span><span class="s0">new </span><span class="s1">AdapterView.OnItemSelectedListener() 
+        { 
+            </span><span class="s0">public void </span><span class="s1">onItemSelected(AdapterView&lt;?&gt; parent</span><span class="s0">, </span><span class="s1">View view</span><span class="s0">, int </span><span class="s1">position</span><span class="s0">, long </span><span class="s1">id) 
+            { 
+                String selectedItem = parent.getItemAtPosition(position).toString()</span><span class="s0">;</span><span class="s1"> 
+                </span><span class="s0">if</span><span class="s1">(selectedItem.equals(</span><span class="s3">&quot;DigitOut13&quot;</span><span class="s1">)) 
+                { 
+                    pinWord = (TextView) findViewById(R.id.textView7) </span><span class="s0">;</span><span class="s1"> 
+                    pinWord.setText(</span><span class="s3">&quot;Digital Pin 13&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    pin = </span><span class="s3">&quot;13&quot;</span><span class="s0">;</span><span class="s1"> 
+                    pin = pin.replaceAll(</span><span class="s3">&quot;[</span><span class="s0">\n\r</span><span class="s3">]&quot;</span><span class="s0">, </span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot;</span><span class="s1">+ pin +</span><span class="s3">&quot;/1&quot;</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld2 = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot; </span><span class="s1">+ pin +</span><span class="s3">&quot;/0&quot;</span><span class="s0">;</span><span class="s1"> 
+                    System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+                    </span><span class="s4">// do your stuff</span><span class="s1"> 
+                }</span><span class="s0">else if</span><span class="s1">(selectedItem.equals(</span><span class="s3">&quot;DigitOut12&quot;</span><span class="s1">)){ 
+                    pinWord = (TextView) findViewById(R.id.textView7) </span><span class="s0">;</span><span class="s1"> 
+                    pinWord.setText(</span><span class="s3">&quot;Digital Pin 12&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    pin = </span><span class="s3">&quot;12&quot;</span><span class="s0">;</span><span class="s1"> 
+                    pin = pin.replaceAll(</span><span class="s3">&quot;[</span><span class="s0">\n\r</span><span class="s3">]&quot;</span><span class="s0">, </span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot;</span><span class="s1">+ pin +</span><span class="s3">&quot;/1&quot;</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld2 = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot; </span><span class="s1">+ pin +</span><span class="s3">&quot;/0&quot;</span><span class="s0">;</span><span class="s1"> 
+                    System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+ 
+                }</span><span class="s0">else if</span><span class="s1">(selectedItem.equals(</span><span class="s3">&quot;DigitOut11&quot;</span><span class="s1">)){ 
+ 
+                    pinWord = (TextView) findViewById(R.id.textView7) </span><span class="s0">;</span><span class="s1"> 
+                    pinWord.setText(</span><span class="s3">&quot;Digital Pin 11&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    pin = </span><span class="s3">&quot;11&quot;</span><span class="s0">;</span><span class="s1"> 
+                    pin = pin.replaceAll(</span><span class="s3">&quot;[</span><span class="s0">\n\r</span><span class="s3">]&quot;</span><span class="s0">, </span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot;</span><span class="s1">+ pin +</span><span class="s3">&quot;/1&quot;</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld2 = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot; </span><span class="s1">+ pin +</span><span class="s3">&quot;/0&quot;</span><span class="s0">;</span><span class="s1"> 
+                    System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+                }</span><span class="s0">else if</span><span class="s1">(selectedItem.equals(</span><span class="s3">&quot;DigitOut10&quot;</span><span class="s1">)){ 
+ 
+                    pinWord = (TextView) findViewById(R.id.textView7) </span><span class="s0">;</span><span class="s1"> 
+                    pinWord.setText(</span><span class="s3">&quot;Digital Pin 10&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    pin = </span><span class="s3">&quot;10&quot;</span><span class="s0">;</span><span class="s1"> 
+                    pin = pin.replaceAll(</span><span class="s3">&quot;[</span><span class="s0">\n\r</span><span class="s3">]&quot;</span><span class="s0">, </span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot;</span><span class="s1">+ pin +</span><span class="s3">&quot;/1&quot;</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld2 = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot; </span><span class="s1">+ pin +</span><span class="s3">&quot;/0&quot;</span><span class="s0">;</span><span class="s1"> 
+                    System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+                }</span><span class="s0">else if</span><span class="s1">(selectedItem.equals(</span><span class="s3">&quot;DigitOut9&quot;</span><span class="s1">)){ 
+                    pinWord = (TextView) findViewById(R.id.textView7) </span><span class="s0">;</span><span class="s1"> 
+                    pinWord.setText(</span><span class="s3">&quot;Digital Pin 9&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    pin = </span><span class="s3">&quot;9&quot;</span><span class="s0">;</span><span class="s1"> 
+                    pin = pin.replaceAll(</span><span class="s3">&quot;[</span><span class="s0">\n\r</span><span class="s3">]&quot;</span><span class="s0">, </span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot;</span><span class="s1">+ pin +</span><span class="s3">&quot;/1&quot;</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld2 = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot; </span><span class="s1">+ pin +</span><span class="s3">&quot;/0&quot;</span><span class="s0">;</span><span class="s1"> 
+                    System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+ 
+                }</span><span class="s0">else if</span><span class="s1">(selectedItem.equals(</span><span class="s3">&quot;DigitOut8&quot;</span><span class="s1">)){ 
+                    pinWord = (TextView) findViewById(R.id.textView7) </span><span class="s0">;</span><span class="s1"> 
+                    pinWord.setText(</span><span class="s3">&quot;Digital Pin 8&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    pin = </span><span class="s3">&quot;8&quot;</span><span class="s0">;</span><span class="s1"> 
+                    pin = pin.replaceAll(</span><span class="s3">&quot;[</span><span class="s0">\n\r</span><span class="s3">]&quot;</span><span class="s0">, </span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot;</span><span class="s1">+ pin +</span><span class="s3">&quot;/1&quot;</span><span class="s0">;</span><span class="s1"> 
+                    OtherActivity.</span><span class="s0">this</span><span class="s1">.json_urld2 = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/&quot; </span><span class="s1">+ pin +</span><span class="s3">&quot;/0&quot;</span><span class="s0">;</span><span class="s1"> 
+                    System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+ 
+                } 
+            } </span><span class="s4">// to close the onItemSelected</span><span class="s1"> 
+            </span><span class="s0">public void </span><span class="s1">onNothingSelected(AdapterView&lt;?&gt; parent) 
+            { 
+ 
+            } 
+        })</span><span class="s0">;</span><span class="s1"> 
+ 
+ 
+    } 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onTouchEvent(MotionEvent event){ 
+        </span><span class="s0">this</span><span class="s1">.mDetector.onTouchEvent(event)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s4">// Be sure to call the superclass implementation</span><span class="s1"> 
+        </span><span class="s0">return super</span><span class="s1">.onTouchEvent(event)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">next(View view) { 
+        EditText txt = (EditText) findViewById(R.id.editText)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">if </span><span class="s1">(txt.getText().toString().equals(</span><span class="s3">&quot;hello&quot;</span><span class="s1">)) { 
+            LinearLayout mealLayout = (LinearLayout) findViewById(R.id.LinearLayout1)</span><span class="s0">;</span><span class="s1"> 
+ 
+            mealLayout.setBackgroundColor(Color.RED)</span><span class="s0">;</span><span class="s1"> 
+            System.out.println(</span><span class="s3">&quot;hey man&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            Intent i = </span><span class="s0">new </span><span class="s1">Intent(</span><span class="s0">this, </span><span class="s1">OtherActivity.</span><span class="s0">class</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            startActivity(i)</span><span class="s0">;</span><span class="s1"> 
+        } 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onDown(MotionEvent motionEvent) { 
+        </span><span class="s0">return false;</span><span class="s1"> 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">onShowPress(MotionEvent motionEvent) { 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onSingleTapUp(MotionEvent motionEvent) { 
+        </span><span class="s0">return false;</span><span class="s1"> 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onScroll(MotionEvent motionEvent</span><span class="s0">, </span><span class="s1">MotionEvent motionEvent1</span><span class="s0">, float </span><span class="s1">v</span><span class="s0">, float </span><span class="s1">v1) { 
+        </span><span class="s0">return false;</span><span class="s1"> 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">onLongPress(MotionEvent motionEvent) { 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onFling(MotionEvent event1</span><span class="s0">, </span><span class="s1">MotionEvent event2</span><span class="s0">,</span><span class="s1"> 
+                           </span><span class="s0">float </span><span class="s1">velocityX</span><span class="s0">, float </span><span class="s1">velocityY) { 
+        </span><span class="s4">//Log.d(DEBUG_TAG, &quot;onFling: &quot; + event1.toString()+event2.toString());</span><span class="s1"> 
+        finish()</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(</span><span class="s3">&quot;hello&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">return true;</span><span class="s1"> 
+    } 
+ 
+ 
+    </span><span class="s0">public void </span><span class="s1">hello(View view){ 
+        </span><span class="s4">//LinearLayout mealLayout = (LinearLayout) findViewById(R.id.LinearLayout1);</span><span class="s1"> 
+ 
+       </span><span class="s4">// mealLayout.setBackgroundColor(Color.GREEN);</span><span class="s1"> 
+        </span><span class="s0">new </span><span class="s1">MyAsyncTask().execute(json_urld)</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">helloOff(View view){ 
+       </span><span class="s4">// LinearLayout mealLayout = (LinearLayout) findViewById(R.id.LinearLayout1);</span><span class="s1"> 
+ 
+       </span><span class="s4">// mealLayout.setBackgroundColor(Color.RED);</span><span class="s1"> 
+        </span><span class="s0">new </span><span class="s1">MyAsyncTask().execute(json_urld2)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s4">//mealLayout.setBackgroundColor(Color.parseColor(&quot;#fffff&quot;));</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">onSelection(View view){ 
+        </span><span class="s4">//LinearLayout mealLayout = (LinearLayout) findViewById(R.id.LinearLayout1);</span><span class="s1"> 
+ 
+        </span><span class="s4">// mealLayout.setBackgroundColor(Color.GREEN);</span><span class="s1"> 
+        </span><span class="s0">new </span><span class="s1">MyAsyncTask().execute(json_urld)</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">offSelection(View view){ 
+        </span><span class="s4">// LinearLayout mealLayout = (LinearLayout) findViewById(R.id.LinearLayout1);</span><span class="s1"> 
+ 
+        </span><span class="s4">// mealLayout.setBackgroundColor(Color.RED);</span><span class="s1"> 
+        </span><span class="s0">new </span><span class="s1">MyAsyncTask().execute(json_urld2)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s4">//mealLayout.setBackgroundColor(Color.parseColor(&quot;#fffff&quot;));</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">IPchange(View view){ 
+        EditText change = (EditText) findViewById(R.id.editText2)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s4">//str = &quot;&quot;;</span><span class="s1"> 
+        String str = change.getText().toString()</span><span class="s0">;</span><span class="s1"> 
+        s2 = str.replaceAll(</span><span class="s3">&quot;[</span><span class="s0">\n\r</span><span class="s3">]&quot;</span><span class="s0">, </span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s0">this</span><span class="s1">.json_urld = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/13/1&quot;</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">this</span><span class="s1">.json_urld2 = </span><span class="s3">&quot;http://&quot;</span><span class="s1">+ s2 +</span><span class="s3">&quot;/arduino/digital/13/0&quot;</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s4">//new MyAsyncTask().execute(json_urld);</span><span class="s1"> 
+        System.out.println(json_urld)</span><span class="s0">;</span><span class="s1"> 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onSingleTapConfirmed(MotionEvent motionEvent) { 
+        </span><span class="s0">return false;</span><span class="s1"> 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onDoubleTap(MotionEvent motionEvent) { 
+        </span><span class="s0">return false;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">wifi(View view){ 
+        startActivity(</span><span class="s0">new </span><span class="s1">Intent(Settings.ACTION_WIFI_SETTINGS))</span><span class="s0">;</span><span class="s1"> 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onDoubleTapEvent(MotionEvent motionEvent) { 
+        </span><span class="s0">return false;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s4">//    public void thirteen(View view){</span><span class="s1"> 
+</span><span class="s4">//        //String s2 = str.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;);</span><span class="s1"> 
+</span><span class="s4">//        pinWord = (TextView) findViewById(R.id.textView7) ;</span><span class="s1"> 
+</span><span class="s4">//        pinWord.setText(&quot;Digital Pin 13&quot;);</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//        pin = &quot;13&quot;;</span><span class="s1"> 
+</span><span class="s4">//        pin = pin.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;);</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot;+ pin +&quot;/1&quot;;</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld2 = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot; + pin +&quot;/0&quot;;</span><span class="s1"> 
+</span><span class="s4">//        System.out.println(json_urld);</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//    }</span><span class="s1"> 
+</span><span class="s4">//    public void twelve(View view){</span><span class="s1"> 
+</span><span class="s4">//        //String s2 = str.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;);</span><span class="s1"> 
+</span><span class="s4">//        pinWord = (TextView) findViewById(R.id.textView7) ;</span><span class="s1"> 
+</span><span class="s4">//        pinWord.setText(&quot;Digital Pin 12&quot;);</span><span class="s1"> 
+</span><span class="s4">//        pin = &quot;12&quot;;</span><span class="s1"> 
+</span><span class="s4">//        pin = pin.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;);</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot;+ pin +&quot;/1&quot;;</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld2 = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot; + pin +&quot;/0&quot;;</span><span class="s1"> 
+</span><span class="s4">//        System.out.println(json_urld);</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//    }</span><span class="s1"> 
+</span><span class="s4">//    public void eleven(View view){</span><span class="s1"> 
+</span><span class="s4">//        //String s2 = str.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;);</span><span class="s1"> 
+</span><span class="s4">//        pinWord = (TextView) findViewById(R.id.textView7) ;</span><span class="s1"> 
+</span><span class="s4">//        pinWord.setText(&quot;Digital Pin 11&quot;);</span><span class="s1"> 
+</span><span class="s4">//        this.pin = &quot;11&quot;;</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot;+ pin +&quot;/1&quot;;</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld2 = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot; + pin +&quot;/0&quot;;</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//    }</span><span class="s1"> 
+</span><span class="s4">//    public void ten(View view){</span><span class="s1"> 
+</span><span class="s4">//        //String s2 = str.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;);</span><span class="s1"> 
+</span><span class="s4">//        pinWord = (TextView) findViewById(R.id.textView7) ;</span><span class="s1"> 
+</span><span class="s4">//        pinWord.setText(&quot;Digital Pin 10&quot;);</span><span class="s1"> 
+</span><span class="s4">//        this.pin = &quot;10&quot;;</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot;+ pin +&quot;/1&quot;;</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld2 = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot; + pin +&quot;/0&quot;;</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//    }</span><span class="s1"> 
+</span><span class="s4">//    public void nine(View view){</span><span class="s1"> 
+</span><span class="s4">//        //String s2 = str.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;);</span><span class="s1"> 
+</span><span class="s4">//        pinWord = (TextView) findViewById(R.id.textView7) ;</span><span class="s1"> 
+</span><span class="s4">//        pinWord.setText(&quot;Digital Pin 9&quot;);</span><span class="s1"> 
+</span><span class="s4">//        this.pin = &quot;9&quot;;</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot;+ pin +&quot;/1&quot;;</span><span class="s1"> 
+</span><span class="s4">//        this.json_urld2 = &quot;http://&quot;+ s2 +&quot;/arduino/digital/&quot; + pin +&quot;/0&quot;;</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//    }</span><span class="s1"> 
+    </span><span class="s0">private class </span><span class="s1">MyAsyncTask </span><span class="s0">extends </span><span class="s1">AsyncTask&lt;String</span><span class="s0">, </span><span class="s1">String</span><span class="s0">, </span><span class="s1">String&gt; { 
+ 
+        @Override 
+        </span><span class="s0">protected </span><span class="s1">String doInBackground(String... params) { 
+ 
+            </span><span class="s4">// http client</span><span class="s1"> 
+            DefaultHttpClient httpclient = </span><span class="s0">new </span><span class="s1">DefaultHttpClient( 
+                    </span><span class="s0">new </span><span class="s1">BasicHttpParams())</span><span class="s0">;</span><span class="s1"> 
+            HttpGet httpget = </span><span class="s0">new </span><span class="s1">HttpGet(params[</span><span class="s5">0</span><span class="s1">])</span><span class="s0">;</span><span class="s1"> 
+            HttpResponse response</span><span class="s0">;</span><span class="s1"> 
+            </span><span class="s0">try </span><span class="s1">{ 
+                </span><span class="s4">// Calling async task to get json</span><span class="s1"> 
+                response = httpclient.execute(httpget)</span><span class="s0">;</span><span class="s1"> 
+                </span><span class="s0">return </span><span class="s1">EntityUtils.toString(response.getEntity())</span><span class="s0">;</span><span class="s1"> 
+ 
+            } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+                e.printStackTrace()</span><span class="s0">;</span><span class="s1"> 
+            } 
+            </span><span class="s0">return null;</span><span class="s1"> 
+ 
+        } 
+ 
+ 
+        </span><span class="s0">protected void </span><span class="s1">onPostExecute(String result) { 
+ 
+            </span><span class="s4">//Log.d(TAG, &quot;JSON Raw Data&quot; + result);</span><span class="s1"> 
+ 
+            </span><span class="s0">try </span><span class="s1">{ 
+ 
+            } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+                e.printStackTrace()</span><span class="s0">;</span><span class="s1"> 
+            } 
+        } 
+    } 
+} 
+</span></pre>
+</body>
+</html>

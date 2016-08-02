@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\build\\intermediates\\res\\merged\\debug\\layout\\otherlayout.xml",
+        "source": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\src\\main\\res\\layout\\otherlayout.xml"
+    },
+    {
+        "merged": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\build\\intermediates\\res\\merged\\debug\\layout\\templayout.xml",
+        "source": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\src\\main\\res\\layout\\templayout.xml"
+    },
+    {
+        "merged": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\build\\intermediates\\res\\merged\\debug\\layout\\templayout2.xml",
+        "source": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\src\\main\\res\\layout\\templayout2.xml"
+    },
+    {
+        "merged": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main2.xml",
+        "source": "C:\\Users\\kaiso\\Downloads\\Android Projects\\SampleJSON\\app\\src\\main\\res\\layout\\activity_main2.xml"
+    }
+]
